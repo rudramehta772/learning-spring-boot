@@ -5,12 +5,11 @@ package com.project.project.models;
 import com.project.project.utils.models.BaseEntity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 
 @Entity
@@ -25,9 +24,8 @@ public class Users extends BaseEntity {
     private boolean is_active = false;
     private boolean is_deleted = false;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Use LAZY loading to avoid unnecessary loading of the Role
-    @JoinColumn(name = "role_id", nullable = false) // Foreign key column in User table
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     // private transient PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -39,15 +37,15 @@ public class Users extends BaseEntity {
     // }
 
     
-    public Users(Long id, String username, String password, boolean is_active, boolean is_deleted, Role role,
-            String passwordEncoder) {
+    public Users(Long id, String username, String password, boolean is_active, boolean is_deleted,
+            String passwordEncoder, UserRole role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.is_active = is_active;
         this.is_deleted = is_deleted;
-        this.role = role;
         this.password = password;
+        this.role = role;
     }
 
     public Users() {}
@@ -92,13 +90,14 @@ public class Users extends BaseEntity {
         this.is_deleted = is_deleted;
     }
 
-    public Role getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
+    
 
     
 }
