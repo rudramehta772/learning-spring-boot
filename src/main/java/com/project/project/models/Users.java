@@ -27,14 +27,7 @@ public class Users extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    // private transient PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    // @PrePersist
-    // public void encodePassword(){
-    //     if (password != null && !password.isEmpty()){
-    //         this.password = passwordEncoder.encode(this.password);
-    //     } 
-    // }
+    
 
     
     public Users(Long id, String username, String password, boolean is_active, boolean is_deleted,
@@ -98,7 +91,14 @@ public class Users extends BaseEntity {
         this.role = role;
     }
     
+    // private transient PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+    // @PrePersist
+    // public void encodePassword(){
+    //     if (password != null && !password.isEmpty()){
+    //         this.password = passwordEncoder.encode(this.password);
+    //     } 
+    // }
     
 }
 
