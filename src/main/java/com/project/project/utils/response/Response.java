@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public class Response {
+public class Response extends AbstractResponse{
 
     // Overloaded
     public static ResponseEntity<Object> success() {
