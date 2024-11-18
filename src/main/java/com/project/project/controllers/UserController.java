@@ -43,13 +43,12 @@ public class UserController {
             if (user != null) {
                 return Response.success(user);
             } else {
-                return Response.success("User not Found");
+                return Response.error("User not Found", HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
             e.printStackTrace();
             return Response.error();
         }
-        
     }
 
     @PostMapping
