@@ -1,6 +1,9 @@
 package com.project.project.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,7 @@ import com.project.project.dao.UserRepository;
 import com.project.project.models.Users;
 import com.project.project.services.UserService;
 import com.project.project.utils.response.Response;
+
 
 
 @RestController
@@ -70,6 +74,16 @@ public class UserController {
             return Response.success(updated_user);
         } else {
             return Response.error();
+        }
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<Object> showPassword(@RequestBody Users user){
+        Users auth_user = userService.authenticateUser(user.getUsername(), user.getPassword());
+        if (auth_user != null) {
+            return Response.success("Login in success",auth_user);
+        } else {
+            return Response.error("Username and Password didn't match", HttpStatus.UNAUTHORIZED);
         }
     }
 }

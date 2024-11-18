@@ -18,7 +18,7 @@ public class UserService {
 
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public Optional<Users> authenticateUser(String username, String rawPassword)
+    public Users authenticateUser(String username, String rawPassword)
     {
         Optional<Users> optionalUser = userRepository.findByUsername(username);
 
@@ -26,10 +26,10 @@ public class UserService {
             Users user = optionalUser.get();
             
             if (passwordEncoder.matches(rawPassword, user.getPassword())) {
-                return Optional.of(user);
+                return Optional.of(user).get();
             }
         }
-        return Optional.empty();
+        return null;
     }
 
     public Users encryptPassword(Users user){

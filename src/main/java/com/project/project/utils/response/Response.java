@@ -14,6 +14,9 @@ public class Response extends AbstractResponse{
     public static ResponseEntity<Object> success(String message) {
         return success(true, message, null, null);
     }
+    public static ResponseEntity<Object> success(String message, Object data) {
+        return success(true, message, data, null);
+    }
     public static ResponseEntity<Object> success(String message, HttpStatus status) {
         return success(true, message, null, status);
     }
