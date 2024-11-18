@@ -4,6 +4,7 @@ package com.project.project.models;
 
 import com.project.project.utils.models.BaseEntity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,6 +20,7 @@ public class Users extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String username;
     private String password;
     private boolean is_active = false;
@@ -27,9 +29,6 @@ public class Users extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    
-
-    
     public Users(Long id, String username, String password, boolean is_active, boolean is_deleted,
             String passwordEncoder, UserRole role) {
         this.id = id;
@@ -51,6 +50,7 @@ public class Users extends BaseEntity {
         this.id = id;
     }
 
+    
     public String getUsername() {
         return username;
     }

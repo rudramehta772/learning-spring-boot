@@ -11,4 +11,5 @@ import com.project.project.models.Users;
 @Repository
 public interface UserRepository extends CrudRepository<Users, Long> {
     Optional<Users> findByUsername(String username);
+    Optional<Boolean> existsByUsername(String username);
 }

@@ -58,6 +58,9 @@ public class UserController {
     @PostMapping
     public ResponseEntity<Object> createUser(@RequestBody Users user){
         try {
+            if (userRepository.existsByUsername(user.getUsername()).get()) {
+                return Response.error("user already exists");
+            }
             Users saved_user  = this.userService.saveUser(user);
             System.out.println(saved_user);
             return Response.success(saved_user, HttpStatus.CREATED);
